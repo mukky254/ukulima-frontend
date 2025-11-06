@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ordersAPI } from '../services/api';
 import { Order } from '../types';
 import { 
@@ -8,7 +8,6 @@ import {
   Clock, 
   XCircle,
   Search,
-  Filter,
   Eye
 } from 'lucide-react';
 import toast from 'react-hot-toast';
