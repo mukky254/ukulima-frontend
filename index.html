@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ukulima - Kenya's premier agricultural marketplace connecting farmers directly with buyers." />
+    <meta name="keywords" content="agriculture, marketplace, farmers, Kenya, fresh produce, wholesale, retail" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ukulima.vercel.app/" />
+    <meta property="og:title" content="Ukulima - Agricultural Marketplace" />
+    <meta property="og:description" content="Connect directly with local farmers. Buy fresh produce or sell your harvest to genuine buyers nationwide." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ukulima.vercel.app/" />
+    <meta property="twitter:title" content="Ukulima - Agricultural Marketplace" />
+    <meta property="twitter:description" content="Connect directly with local farmers. Buy fresh produce or sell your harvest to genuine buyers nationwide." />
+    <meta property="twitter:image" content="/og-image.png" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <title>Ukulima - Agricultural Marketplace</title>
+
+    <style>
+      /* Critical CSS for initial load */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        min-height: 100vh;
+      }
+      
+      /* Loading screen styles */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        color: white;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-spinner"></div>
+      <div style="margin-top: 20px; font-size: 18px; font-weight: 600;">Loading Ukulima...</div>
+    </div>
+
+    <div id="root"></div>
+    
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Remove loading screen when app is mounted
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => loadingScreen.remove(), 500);
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
