@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// REMOVE /api from the URL - backend now uses root paths
-const API_BASE_URL = 'https://ukulima-backend-ionm.onrender.com';
+// For production - use relative paths, for development use proxy
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://ukulima-backend-ionm.onrender.com'
+  : '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
