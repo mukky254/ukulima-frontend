@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://ukulima-backend-ionm.onrender.com/api';
+// REMOVE /api from the URL - backend now uses root paths
+const API_BASE_URL = 'https://ukulima-backend-ionm.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000, // 10 second timeout
+  timeout: 10000,
 });
 
 // Add token to requests
@@ -19,7 +20,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Add response interceptor for better error handling
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -66,7 +66,6 @@ export const messagesAPI = {
     api.post('/messages', messageData),
 };
 
-// Test connection
 export const testConnection = () => 
   api.get('/health');
 
