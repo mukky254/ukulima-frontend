@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { productsAPI } from '../services/api';
 import { Product } from '../types';
-import { Search, Filter, Plus, Star, MapPin } from 'lucide-react';
+import { Search, Plus, Star, MapPin } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Products: React.FC = () => {
