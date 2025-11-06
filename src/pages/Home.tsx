@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { 
@@ -6,10 +5,7 @@ import {
   Shield, 
   Truck, 
   Sprout, 
-  Users, 
-  TrendingUp,
-  Star,
-  CheckCircle
+  Users
 } from 'lucide-react';
 
 const Home: React.FC = () => {
