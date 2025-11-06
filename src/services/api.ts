@@ -7,6 +7,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000, // 10 second timeout
 });
 
 // Add token to requests
@@ -18,11 +19,22 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Error:', error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);
+
 export const authAPI = {
   login: (email: string, password: string) => 
     api.post('/auth/login', { email, password }),
   register: (userData: any) => 
     api.post('/auth/register', userData),
+  getMe: () => 
+    api.get('/auth/me'),
 };
 
 export const productsAPI = {
@@ -34,6 +46,8 @@ export const productsAPI = {
     api.post('/products', productData),
   update: (id: string, productData: any) => 
     api.put(`/products/${id}`, productData),
+  getMyProducts: () =>
+    api.get('/products/farmer/my-products'),
 };
 
 export const ordersAPI = {
@@ -51,5 +65,9 @@ export const messagesAPI = {
   send: (messageData: any) => 
     api.post('/messages', messageData),
 };
+
+// Test connection
+export const testConnection = () => 
+  api.get('/health');
 
 export default api;
